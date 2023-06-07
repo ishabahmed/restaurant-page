@@ -61,3 +61,24 @@ body {
 .active {
   text-decoration: line-through !important;
 }
+
+.menu-content {
+  margin: 0 10rem;
+}
+
+.menu {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 5rem;
+}
+
+.menu-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-item-name {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
