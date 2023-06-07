@@ -22,7 +22,6 @@ function header() {
 
   const home = document.createElement('a');
   home.textContent = 'Home';
-  home.classList.add('active');
   home.setAttribute('href', '#');
   nav.appendChild(home);
 
@@ -106,6 +105,68 @@ function menu() {
   content.appendChild(menuContent);
 }
 
-init();
-header();
-home();
+function addEventListeners() {
+  const homeLink = document.querySelector('.header nav a:nth-child(1)');
+  homeLink.addEventListener('click', () => {
+    const content = document.querySelector('.content');
+    
+    content.innerHTML = '';
+    header();
+    home();
+    addEventListeners();
+
+    const currentLink = document.querySelector('.header nav a:nth-child(1)');
+    currentLink.style.textDecoration = 'line-through';
+    const menuLink = document.querySelector('.header nav a:nth-child(2)');
+    menuLink.style.textDecoration = 'none';
+    const contactLink = document.querySelector('.header nav a:nth-child(3)');
+    contactLink.style.textDecoration = 'none';
+  });
+
+  const menuLink = document.querySelector('.header nav a:nth-child(2)');
+  menuLink.addEventListener('click', () => {
+    const content = document.querySelector('.content');
+    content.innerHTML = '';
+    header();
+    menu();
+    addEventListeners();
+
+    const homeLink = document.querySelector('.header nav a:nth-child(1)');
+    homeLink.style.textDecoration = 'none';
+    const currentLink = document.querySelector('.header nav a:nth-child(2)');
+    currentLink.style.textDecoration = 'line-through';
+    const contactLink = document.querySelector('.header nav a:nth-child(3)');
+    contactLink.style.textDecoration = 'none';
+  });
+
+  const contactLink = document.querySelector('.header nav a:nth-child(3)');
+  contactLink.addEventListener('mouseup', () => {
+    const content = document.querySelector('.content');
+    content.innerHTML = '';
+    header();
+    addEventListeners();
+
+    const homeLink = document.querySelector('.header nav a:nth-child(1)');
+    homeLink.style.textDecoration = 'none';
+    const menuLink = document.querySelector('.header nav a:nth-child(2)');
+    menuLink.style.textDecoration = 'none';
+    const currentLink = document.querySelector('.header nav a:nth-child(3)');
+    currentLink.style.textDecoration = 'line-through';
+  });
+}
+
+function main() {
+  init();
+  header();
+  home();
+  addEventListeners();
+
+  const homeLink = document.querySelector('.header nav a:nth-child(1)');
+  homeLink.style.textDecoration = 'line-through';
+  const menuLink = document.querySelector('.header nav a:nth-child(2)');
+  menuLink.style.textDecoration = 'none';
+  const contactLink = document.querySelector('.header nav a:nth-child(3)');
+  contactLink.style.textDecoration = 'none';
+}
+
+main();
