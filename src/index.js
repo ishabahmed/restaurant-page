@@ -1,5 +1,6 @@
 import './style.css';
 import Logo from './logo.png';
+import Location from './location.png';
 import Menu from './menu.csv';
 
 function init() {
@@ -105,11 +106,75 @@ function menu() {
   content.appendChild(menuContent);
 }
 
+function contact() {
+  const content = document.querySelector('.content');
+
+  const contactContent = document.createElement('div');
+  contactContent.classList.add('contact-content');
+
+  const contactTitle = document.createElement('h1');
+  contactTitle.textContent = 'Contact Us.';
+
+  const contactInfo = document.createElement('div');
+  contactInfo.classList.add('contact-info');
+
+  const details = document.createElement('div');
+  details.classList.add('details');
+
+  const address = document.createElement('div');
+  address.classList.add('address');
+
+  const addressTitle = document.createElement('h3');
+  addressTitle.textContent = 'Address';
+
+  const addressDetails = document.createElement('span');
+  addressDetails.textContent = `28 Queen's Gate
+  South Kensington
+  London
+  SW7 5JA`;
+  addressDetails.style.whiteSpace = 'pre-line';
+
+  address.appendChild(addressTitle);
+  address.appendChild(addressDetails);
+
+  const openingHours = document.createElement('div');
+  openingHours.classList.add('opening-hours');
+
+  const openingHoursTitle = document.createElement('h3');
+  openingHoursTitle.textContent = 'Opening Hours';
+
+  const openingHoursDetails = document.createElement('span');
+  openingHoursDetails.textContent = `Monday - Thursday: 8am to 11pm
+  Friday: 8am to 12am
+  Saturday: 9am to 12am
+  Sunday: 9am to 11pm
+
+  Bank Holidays: Open as usual`;
+  openingHoursDetails.style.whiteSpace = 'pre-line';
+
+  openingHours.appendChild(openingHoursTitle);
+  openingHours.appendChild(openingHoursDetails);
+
+  details.appendChild(address);
+  details.appendChild(openingHours);
+
+  const googleMaps = new Image();
+  googleMaps.src = Location;
+
+  contactInfo.appendChild(details);
+  contactInfo.appendChild(googleMaps);
+
+  contactContent.appendChild(contactTitle);
+  contactContent.appendChild(contactInfo);
+
+  content.appendChild(contactContent);
+}
+
 function addEventListeners() {
   const homeLink = document.querySelector('.header nav a:nth-child(1)');
   homeLink.addEventListener('click', () => {
     const content = document.querySelector('.content');
-    
+
     content.innerHTML = '';
     header();
     home();
@@ -144,6 +209,7 @@ function addEventListeners() {
     const content = document.querySelector('.content');
     content.innerHTML = '';
     header();
+    contact();
     addEventListeners();
 
     const homeLink = document.querySelector('.header nav a:nth-child(1)');
@@ -163,10 +229,6 @@ function main() {
 
   const homeLink = document.querySelector('.header nav a:nth-child(1)');
   homeLink.style.textDecoration = 'line-through';
-  const menuLink = document.querySelector('.header nav a:nth-child(2)');
-  menuLink.style.textDecoration = 'none';
-  const contactLink = document.querySelector('.header nav a:nth-child(3)');
-  contactLink.style.textDecoration = 'none';
 }
 
 main();
